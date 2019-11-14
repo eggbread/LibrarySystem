@@ -32,7 +32,7 @@ const Index = () => {
   console.log(book)
   return (
     <Layout>
-      <div style={{ margin: "20% auto" }}>
+      <div style={{ margin: "20% auto",width:"97%" }}>
         <InputGroup className="mb-3">
           <FormControl
             placeholder="Please insert book name"
