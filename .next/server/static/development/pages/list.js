@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -171,6 +171,17 @@ module.exports = __webpack_require__(/*! core-js/library/fn/object/create */ "co
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/define-properties */ "core-js/library/fn/object/define-properties");
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js":
 /*!*******************************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js ***!
@@ -190,6 +201,28 @@ module.exports = __webpack_require__(/*! core-js/library/fn/object/define-proper
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-descriptor */ "core-js/library/fn/object/get-own-property-descriptor");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-descriptors */ "core-js/library/fn/object/get-own-property-descriptors");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-symbols */ "core-js/library/fn/object/get-own-property-symbols");
 
 /***/ }),
 
@@ -223,6 +256,36 @@ module.exports = __webpack_require__(/*! core-js/library/fn/promise */ "core-js/
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! core-js/library/fn/weak-map */ "core-js/library/fn/weak-map");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _defineProperty; });
+/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
 
 /***/ }),
 
@@ -1896,275 +1959,192 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "react-bootstrap");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _hooks_headerHook__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hooks/headerHook */ "./pages/hooks/headerHook.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 var _jsxFileName = "C:\\Users\\gyeongmin\\LibrarySystem\\pages\\Header.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+
+
 const Header = () => {
-  const {
-    0: showSI,
-    1: setShowSI
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-  const {
-    0: showSU,
-    1: setShowSU
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [modal, dispatchModal] = Object(_hooks_headerHook__WEBPACK_IMPORTED_MODULE_2__["default"])("modal");
+  const [SI, dispatchSI] = Object(_hooks_headerHook__WEBPACK_IMPORTED_MODULE_2__["default"])("signin");
+  const [isLogin, setLogin] = Object(_hooks_headerHook__WEBPACK_IMPORTED_MODULE_2__["default"])("isLogin");
 
-  const handleCloseSI = () => setShowSI(false);
+  const SignIn = async (userId, userPw) => {
+    var check = await axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("http://localhost:4000/signin", {
+      userId: userId,
+      userPw: userPw
+    });
 
-  const handleShowSI = () => setShowSI(true);
+    if (check.data) {
+      setLogin(check.data);
+    }
+  };
 
-  const handleCloseSU = () => setShowSU(false);
+  var loginBtn;
 
-  const handleShowSU = () => setShowSU(true);
+  if (!isLogin) {
+    loginBtn = __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 22
+      },
+      __self: undefined
+    }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+      style: {
+        margin: "0 10px"
+      },
+      variant: "dark",
+      onClick: () => dispatchModal("openSI"),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 23
+      },
+      __self: undefined
+    }, "Sign in"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+      variant: "dark",
+      onClick: () => dispatchModal("openSU"),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 30
+      },
+      __self: undefined
+    }, "Sign up"));
+  } else {
+    loginBtn = __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 37
+      },
+      __self: undefined
+    }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
+      style: {
+        color: "white"
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 38
+      },
+      __self: undefined
+    }, isLogin), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+      variant: "dark",
+      onClick: () => setLogin(false),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 41
+      },
+      __self: undefined
+    }, "Log out"));
+  }
 
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"], {
     bg: "dark",
     variant: "dark",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 49
     },
     __self: undefined
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"].Brand, {
     href: "/",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 50
     },
     __self: undefined
   }, "CNU Library"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
     className: "mr-auto",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 51
     },
     __self: undefined
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
     href: "#",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 52
     },
     __self: undefined
   }, "Home"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
     href: "#",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 53
     },
     __self: undefined
   }, "about"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
     href: "#",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 54
     },
     __self: undefined
-  }, "Contact")), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+  }, "Contact")), loginBtn), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
+    show: modal.showSI,
+    onHide: () => dispatchModal("hideSI"),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
-    },
-    __self: undefined
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    style: {
-      margin: "0 10px"
-    },
-    variant: "dark",
-    onClick: handleShowSI,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 21
-    },
-    __self: undefined
-  }, "Sign in"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    variant: "dark",
-    onClick: handleShowSU,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 28
-    },
-    __self: undefined
-  }, "Sign up"))), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
-    show: showSI,
-    onHide: handleCloseSI,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 59
     },
     __self: undefined
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"].Header, {
     closeButton: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 35
+      lineNumber: 60
     },
     __self: undefined
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"].Title, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36
+      lineNumber: 61
     },
     __self: undefined
   }, "Sign In")), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"].Body, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38
+      lineNumber: 63
     },
     __self: undefined
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 39
+      lineNumber: 64
     },
     __self: undefined
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
     controlId: "formBasicEmail",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 40
-    },
-    __self: undefined
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 41
-    },
-    __self: undefined
-  }, "ID"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
-    type: "email",
-    placeholder: "Enter ID",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 42
-    },
-    __self: undefined
-  })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    controlId: "formBasicPassword",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 45
-    },
-    __self: undefined
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 46
-    },
-    __self: undefined
-  }, "Password"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
-    type: "password",
-    placeholder: "Password",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 47
-    },
-    __self: undefined
-  })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    controlId: "formBasicCheckbox",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 49
-    },
-    __self: undefined
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Check, {
-    type: "checkbox",
-    label: "Check me out",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 50
-    },
-    __self: undefined
-  })))), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"].Footer, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 54
-    },
-    __self: undefined
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    variant: "secondary",
-    onClick: handleCloseSI,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 55
-    },
-    __self: undefined
-  }, "Close"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    variant: "primary",
-    type: "submit",
-    onClick: handleCloseSI,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 58
-    },
-    __self: undefined
-  }, "Submit"))), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
-    show: showSU,
-    onHide: handleCloseSU,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 64
-    },
-    __self: undefined
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"].Header, {
-    closeButton: true,
-    __source: {
-      fileName: _jsxFileName,
       lineNumber: 65
     },
     __self: undefined
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"].Title, {
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 66
     },
     __self: undefined
-  }, "Sign Up")), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"].Body, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 68
-    },
-    __self: undefined
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 69
-    },
-    __self: undefined
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Row, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 70
-    },
-    __self: undefined
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    as: react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"],
-    controlId: "formGridID",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 71
-    },
-    __self: undefined
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 72
-    },
-    __self: undefined
   }, "ID"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
     type: "text",
     placeholder: "Enter ID",
+    onInput: ref => dispatchSI({
+      type: "setId",
+      userId: ref.target.value
+    }),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 73
+      lineNumber: 67
     },
     __self: undefined
   })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    as: react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"],
-    controlId: "formGridPassword",
+    controlId: "formBasicPassword",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 76
@@ -2179,42 +2159,173 @@ const Header = () => {
   }, "Password"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
     type: "password",
     placeholder: "Password",
+    onInput: ref => dispatchSI({
+      type: "setPw",
+      userPw: ref.target.value
+    }),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 78
+    },
+    __self: undefined
+  })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+    controlId: "formBasicCheckbox",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 86
+    },
+    __self: undefined
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Check, {
+    type: "checkbox",
+    label: "Check me out",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 87
+    },
+    __self: undefined
+  })))), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"].Footer, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 91
+    },
+    __self: undefined
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    variant: "secondary",
+    onClick: () => dispatchModal("hideSI"),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 92
+    },
+    __self: undefined
+  }, "Close"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    variant: "primary",
+    type: "submit",
+    onClick: async ref => {
+      if (SI.userId && SI.userPw) {
+        await SignIn(SI.userId, SI.userPw);
+      }
+
+      dispatchModal("hideSI");
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 95
+    },
+    __self: undefined
+  }, "Submit"))), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
+    show: modal.showSU,
+    onHide: () => dispatchModal("hideSU"),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 110
+    },
+    __self: undefined
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"].Header, {
+    closeButton: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 111
+    },
+    __self: undefined
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"].Title, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 112
+    },
+    __self: undefined
+  }, "Sign Up")), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"].Body, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 114
+    },
+    __self: undefined
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 115
+    },
+    __self: undefined
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Row, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 116
+    },
+    __self: undefined
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+    as: react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"],
+    controlId: "formGridID",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 117
+    },
+    __self: undefined
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 118
+    },
+    __self: undefined
+  }, "ID"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
+    type: "text",
+    placeholder: "Enter ID",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 119
+    },
+    __self: undefined
+  })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+    as: react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"],
+    controlId: "formGridPassword",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 122
+    },
+    __self: undefined
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 123
+    },
+    __self: undefined
+  }, "Password"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
+    type: "password",
+    placeholder: "Password",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 124
     },
     __self: undefined
   }))), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
     controlId: "formGridName",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 82
+      lineNumber: 128
     },
     __self: undefined
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 83
+      lineNumber: 129
     },
     __self: undefined
   }, "Name"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
     placeholder: "Name",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 84
+      lineNumber: 130
     },
     __self: undefined
   })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
     controlId: "formGridEmail",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 87
+      lineNumber: 133
     },
     __self: undefined
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 88
+      lineNumber: 134
     },
     __self: undefined
   }, "email"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
@@ -2222,13 +2333,13 @@ const Header = () => {
     placeholder: "Email",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 89
+      lineNumber: 135
     },
     __self: undefined
   })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Row, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 91
+      lineNumber: 137
     },
     __self: undefined
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
@@ -2236,13 +2347,13 @@ const Header = () => {
     controlId: "formGridPhone",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 93
+      lineNumber: 138
     },
     __self: undefined
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 94
+      lineNumber: 139
     },
     __self: undefined
   }, "Phone"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
@@ -2250,7 +2361,7 @@ const Header = () => {
     placeholder: "Phone",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 95
+      lineNumber: 140
     },
     __self: undefined
   })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
@@ -2258,67 +2369,225 @@ const Header = () => {
     controlId: "formGridJob",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 98
+      lineNumber: 143
     },
     __self: undefined
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 99
+      lineNumber: 144
     },
     __self: undefined
   }, "Job"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
     as: "select",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 100
+      lineNumber: 145
     },
     __self: undefined
   }, __jsx("option", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 101
+      lineNumber: 146
     },
     __self: undefined
   }, "Bachelor"), __jsx("option", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 102
+      lineNumber: 147
     },
     __self: undefined
   }, "Master"), __jsx("option", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 103
+      lineNumber: 148
     },
     __self: undefined
   }, "Staff")))))), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"].Footer, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 109
+      lineNumber: 154
     },
     __self: undefined
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     variant: "secondary",
-    onClick: handleCloseSU,
+    onClick: () => dispatchModal("hideSU"),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 110
+      lineNumber: 155
     },
     __self: undefined
   }, "Close"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     variant: "primary",
     type: "submit",
-    onClick: handleCloseSU,
+    onClick: () => dispatchModal("hideSU"),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 113
+      lineNumber: 158
     },
     __self: undefined
   }, "Submit"))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Header);
+
+/***/ }),
+
+/***/ "./pages/hooks/headerHook.js":
+/*!***********************************!*\
+  !*** ./pages/hooks/headerHook.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptors */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptor */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_8__);
+
+
+
+
+
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(source).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
+
+
+
+
+const SingUp = () => {};
+
+const initialState = {
+  isLogin: false,
+  modal: {
+    showSI: false,
+    showSU: false
+  },
+  signin: {
+    userId: "",
+    userPw: ""
+  },
+  signup: {
+    userId: "",
+    userPw: "",
+    userName: "",
+    userEmail: "",
+    userPhone: "",
+    userJob: ""
+  }
+};
+
+const modalReducer = (state, action) => {
+  switch (action) {
+    case "openSI":
+      {
+        return _objectSpread({}, state, {
+          showSI: true
+        });
+      }
+
+    case "openSU":
+      {
+        return _objectSpread({}, state, {
+          showSU: true
+        });
+      }
+
+    case "hideSI":
+      {
+        return _objectSpread({}, state, {
+          showSI: false
+        });
+      }
+
+    case "hideSU":
+      {
+        return _objectSpread({}, state, {
+          showSU: false
+        });
+      }
+
+    default:
+      {
+        throw new Error("Error");
+      }
+  }
+};
+
+const signinReducer = (state, action) => {
+  switch (action.type) {
+    case "setId":
+      {
+        return _objectSpread({}, state, {
+          userId: action.userId
+        });
+      }
+
+    case "setPw":
+      {
+        return _objectSpread({}, state, {
+          userPw: action.userPw
+        });
+      }
+
+    case "setData":
+      {
+        if (!(state.userId && state.userPw)) {
+          return false;
+        }
+
+        return SignIn(state.userId, state.userPw);
+      }
+
+    default:
+      {
+        throw new Error("Error");
+      }
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (type => {
+  switch (type) {
+    case "isLogin":
+      {
+        return Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])(false);
+      }
+
+    case "modal":
+      {
+        return Object(react__WEBPACK_IMPORTED_MODULE_7__["useReducer"])(modalReducer, initialState.modal);
+      }
+
+    case "signin":
+      {
+        return Object(react__WEBPACK_IMPORTED_MODULE_7__["useReducer"])(signinReducer, initialState.signin);
+      }
+
+    case "signup":
+      {
+        return Object(react__WEBPACK_IMPORTED_MODULE_7__["useReducer"])(modalReducer, initialState.signup);
+      }
+  }
+});
 
 /***/ }),
 
@@ -2340,6 +2609,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
 var _jsxFileName = "C:\\Users\\gyeongmin\\LibrarySystem\\pages\\list.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
@@ -2348,31 +2619,43 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-const list = () => {
+
+
+const list = ({
+  url: {
+    query: {
+      bookName
+    }
+  }
+}) => {
+  const isReceiveList = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(false);
+  const {
+    0: listData,
+    1: setListData
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    if (!isReceiveList.current) {
+      axios__WEBPACK_IMPORTED_MODULE_5___default.a.get("http://localhost:4000/list", {
+        params: {
+          bookName: bookName
+        }
+      }).then(res => {
+        setListData(res.data);
+        isReceiveList.current = true;
+      });
+    }
+  });
   const router = Object(next_router__WEBPACK_IMPORTED_MODULE_3__["useRouter"])();
-  const data = [{
-    title: "Introduce of DataBase",
-    author: "Gyeongmin",
-    company: "CNU",
-    ISBN: "978-89-5653-008-6.",
-    use: false
-  }, {
-    title: "Introduce of Web",
-    author: "Gyeongmin",
-    company: "CNU",
-    ISBN: "978-89-5653-008-6.",
-    use: true
-  }];
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 33
     },
     __self: undefined
   }, __jsx("h3", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 34
     },
     __self: undefined
   }, "Result of ", router.query.bookName), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Table"], {
@@ -2381,92 +2664,92 @@ const list = () => {
     hover: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 35
     },
     __self: undefined
   }, __jsx("thead", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 36
     },
     __self: undefined
   }, __jsx("tr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 37
     },
     __self: undefined
   }, __jsx("th", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 38
     },
     __self: undefined
   }, "Title"), __jsx("th", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 39
     },
     __self: undefined
   }, "Author"), __jsx("th", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 40
     },
     __self: undefined
   }, "Company"), __jsx("th", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 33
+      lineNumber: 41
     },
     __self: undefined
   }, "ISBN"), __jsx("th", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 42
     },
     __self: undefined
-  }, "Available"))), data.map(data => __jsx(next_link__WEBPACK_IMPORTED_MODULE_4___default.a, {
+  }, "Available"))), listData.map(data => __jsx(next_link__WEBPACK_IMPORTED_MODULE_4___default.a, {
     href: `/book?bookName=${data.title}`,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38
+      lineNumber: 46
     },
     __self: undefined
   }, __jsx("tr", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 39
+      lineNumber: 47
     },
     __self: undefined
   }, __jsx("td", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 40
+      lineNumber: 48
     },
     __self: undefined
   }, data.title), __jsx("td", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 41
+      lineNumber: 49
     },
     __self: undefined
   }, data.author), __jsx("td", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 42
+      lineNumber: 50
     },
     __self: undefined
   }, data.company), __jsx("td", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 43
+      lineNumber: 51
     },
     __self: undefined
   }, data.ISBN), __jsx("td", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 44
+      lineNumber: 52
     },
     __self: undefined
   }, data.use ? "Available" : "Unavailable"))))));
@@ -2476,7 +2759,7 @@ const list = () => {
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!*****************************!*\
   !*** multi ./pages/list.js ***!
   \*****************************/
@@ -2485,6 +2768,17 @@ const list = () => {
 
 module.exports = __webpack_require__(/*! C:\Users\gyeongmin\LibrarySystem\pages\list.js */"./pages/list.js");
 
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ }),
 
@@ -2521,6 +2815,17 @@ module.exports = require("core-js/library/fn/object/create");
 
 /***/ }),
 
+/***/ "core-js/library/fn/object/define-properties":
+/*!**************************************************************!*\
+  !*** external "core-js/library/fn/object/define-properties" ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/object/define-properties");
+
+/***/ }),
+
 /***/ "core-js/library/fn/object/define-property":
 /*!************************************************************!*\
   !*** external "core-js/library/fn/object/define-property" ***!
@@ -2540,6 +2845,28 @@ module.exports = require("core-js/library/fn/object/define-property");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/object/get-own-property-descriptor");
+
+/***/ }),
+
+/***/ "core-js/library/fn/object/get-own-property-descriptors":
+/*!*************************************************************************!*\
+  !*** external "core-js/library/fn/object/get-own-property-descriptors" ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/object/get-own-property-descriptors");
+
+/***/ }),
+
+/***/ "core-js/library/fn/object/get-own-property-symbols":
+/*!*********************************************************************!*\
+  !*** external "core-js/library/fn/object/get-own-property-symbols" ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/object/get-own-property-symbols");
 
 /***/ }),
 

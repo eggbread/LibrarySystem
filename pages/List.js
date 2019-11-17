@@ -2,25 +2,33 @@ import { ListGroup, Table } from "react-bootstrap";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useEffect, useState, useRef } from "react";
+import axios from "axios";
 
-const list = () => {
-  const router = useRouter();
-  const data = [
-    {
-      title: "Introduce of DataBase",
-      author: "Gyeongmin",
-      company: "CNU",
-      ISBN: "978-89-5653-008-6.",
-      use:false
-    },
-    {
-      title: "Introduce of Web",
-      author: "Gyeongmin",
-      company: "CNU",
-      ISBN: "978-89-5653-008-6.",
-      use:true
+const list = ({
+  url: {
+    query: { bookName }
+  }
+}) => {
+  const isReceiveList = useRef(false);
+  const [listData, setListData] = useState([]);
+
+  useEffect(() => {
+    if (!isReceiveList.current) {
+      axios
+        .get("http://localhost:4000/list", {
+          params: {
+            bookName: bookName
+          }
+        })
+        .then(res => {
+          setListData(res.data);
+          isReceiveList.current=true;
+        });
     }
-  ];
+  });
+  const router = useRouter();
+
   return (
     <Layout>
       <h3>Result of {router.query.bookName}</h3>
@@ -34,14 +42,14 @@ const list = () => {
             <th>Available</th>
           </tr>
         </thead>
-        {data.map(data => (
+        {listData.map(data => (
           <Link href={`/book?bookName=${data.title}`}>
             <tr>
               <td>{data.title}</td>
               <td>{data.author}</td>
               <td>{data.company}</td>
               <td>{data.ISBN}</td>
-              <td>{data.use?"Available":"Unavailable"}</td>
+              <td>{data.use ? "Available" : "Unavailable"}</td>
             </tr>
           </Link>
         ))}

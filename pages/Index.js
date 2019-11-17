@@ -29,7 +29,6 @@ const bookReducer=(state,action)=>{
 
 const Index = () => {
   const [book, dispatchBook] = useReducer(bookReducer,initialState);
-  console.log(book)
   return (
     <Layout>
       <div style={{ margin: "20% auto",width:"97%" }}>
